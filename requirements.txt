@@ -1,0 +1,5 @@
+python-dotenv
+phidata
+groq
+googlesearch-python
+pycountry
