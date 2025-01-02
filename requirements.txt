@@ -3,3 +3,4 @@ phidata
 groq
 googlesearch-python
 pycountry
+yfinance

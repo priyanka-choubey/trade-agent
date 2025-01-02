@@ -32,4 +32,5 @@ agent = Agent(
     markdown=True
 )
 
-agent.print_response("Summarize and compare analyst recommendations and stock fundamentals for top 5 US tech stocks")
+def get_response(query):
+    agent.print_response(query)
