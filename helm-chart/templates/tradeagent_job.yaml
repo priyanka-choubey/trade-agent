@@ -1,0 +1,28 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: trade-agent-job
+  labels:
+    app: trade-agent
+spec:
+  parallelism: 1
+  # Clean Job after 3 days
+  ttlSecondsAfterFinished: 432000
+  template:
+    metadata:
+      labels:
+        app: trade-agent
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: upgrade-nodepool
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: IfNotPresent
+          resources: {{ toYaml .Values.resources | nindent 12 }}         
+          args:
+            - "--query"
+            - "Top performing stocks of the day"
+          env:
+            - name: "GROQ_API_KEY"
+              value: {{ .Values.api_key}}
